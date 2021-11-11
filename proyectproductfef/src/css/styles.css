@@ -1,0 +1,12 @@
+.boton {
+  border: none;
+  background-color: transparent;
+  font-size: 25px;
+  color: #bbb6b6;
+}
+
+.botonfondoTransparante {
+  background-color: transparent;
+  border: 1px solid white;
+  padding: 8px 10px;
+}

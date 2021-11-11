@@ -1,10 +1,15 @@
 import "./App.css";
-//import { bootstrap } from "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./css/styles.css";
+//import Acordeon from "./views/Acordeon";
+import Navbar from "./views/Navbar";
+import Carusel from "./views/Carusel";
+
 function App() {
   return (
     <>
-      <h2>Hola</h2>
-      <button className="btn btn-primary">holaa</button>
+      <Navbar />
+      <Carusel />
     </>
   );
 }
