@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { NavLink, Offcanvas, Button, Badge } from "react-bootstrap";
+import { end } from "@popperjs/core";
+
 function Navbar() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light py-3">
       <div className="container">
@@ -49,12 +57,32 @@ function Navbar() {
             <button className="boton" type="submit">
               <FontAwesomeIcon icon={faSearch} />
             </button>
-            <button className="boton mx-3" type="submit">
-              <FontAwesomeIcon icon={faShoppingCart} />
-            </button>
+            <Button
+              className="boton mx-3 me-2"
+              variant="primary"
+              onClick={handleShow}
+            >
+              <FontAwesomeIcon icon={faShoppingCart} className="mx-2" />
+              <Badge bg="secondary"></Badge>
+            </Button>
           </div>
         </div>
       </div>
+
+      <Offcanvas
+        show={show}
+        onHide={handleClose}
+        placement={end}
+        className="w-25"
+      >
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          Some text as placeholder. In real life you can have the elements you
+          have chosen. Like, text, images, lists, etc.
+        </Offcanvas.Body>
+      </Offcanvas>
     </nav>
   );
 }

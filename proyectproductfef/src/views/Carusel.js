@@ -10,7 +10,7 @@ function Carusel() {
   return (
     <div
       id="carouselExampleCaptions"
-      className="carousel slide"
+      className="carousel slide "
       data-bs-ride="carousel"
     >
       <div className="carousel-indicators">
@@ -54,17 +54,17 @@ function Carusel() {
             <h5 className="text-uppercase my-2">Teclados gamers</h5>
             <button className="text-uppercase text-light botonfondoTransparante">
               Ver Mas
-              <FontAwesomeIcon icon={faArrowRight} className="mx-3" />
+              {/* <FontAwesomeIcon icon={faArrowRight} className="mx-3" /> */}
             </button>
           </div>
         </div>
         <div className="carousel-item">
           <img src={img3} className="d-block w-100" alt="..." />
           <div className="carousel-caption d-none d-md-block">
-            <h5 className="text-uppercase my-2">Componentes Pc gamers</h5>
+            <h5 className="text-uppercase my-2">Monitores</h5>
             <button className="text-uppercase text-light botonfondoTransparante">
               Ver Mas
-              <FontAwesomeIcon icon={faArrowRight} className="mx-3" />
+              {/*  <FontAwesomeIcon icon={faArrowRight} className="mx-3" /> */}
             </button>
           </div>
         </div>
