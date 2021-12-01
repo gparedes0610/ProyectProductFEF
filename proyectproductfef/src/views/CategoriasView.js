@@ -3,7 +3,7 @@ import { Card, Button } from "react-bootstrap";
 import { obtenerCategorias } from "../service/categoriaService";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-function Categorias() {
+function CategoriasView() {
   const [categorias, setCategorias] = useState([]);
 
   const getCategorias = async () => {
@@ -65,4 +65,4 @@ function Categorias() {
   );
 }
 
-export default Categorias;
+export default CategoriasView;
