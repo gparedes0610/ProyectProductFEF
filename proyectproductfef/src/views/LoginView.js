@@ -67,7 +67,9 @@ function LoginView() {
             <span className="text-danger">
               <button
                 className="text-uppercase text-danger botonfondoTransparante px-0"
-                onClick={signIn}
+                onClick={() => {
+                  signIn();
+                }}
               >
                 Aqui
               </button>

@@ -11,6 +11,16 @@ const obtenerProductos = async () => {
     console.log(error);
   }
 };
+//obtener productos por busqueda
+const obtenerProductosPorBusqueda = async (busqueda = "") => {
+  try {
+    let { data } = await axios.get(`${URL}?search=${busqueda}`);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 //obtener productos limitado por la cantidad y por pagina
 const obtenerProductosPorPagina = async (pagina = 1, limite = 9) => {
   try {
@@ -21,4 +31,19 @@ const obtenerProductosPorPagina = async (pagina = 1, limite = 9) => {
   }
 };
 
-export { obtenerProductosPorPagina, obtenerProductos };
+//obtener productos por Id
+const obtenerProductoPorId = async (id) => {
+  try {
+    let { data } = await axios.get(`${URL}/${id}`);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export {
+  obtenerProductosPorPagina,
+  obtenerProductos,
+  obtenerProductoPorId,
+  obtenerProductosPorBusqueda,
+};

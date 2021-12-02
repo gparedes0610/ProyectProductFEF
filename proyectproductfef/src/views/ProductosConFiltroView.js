@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import { obtenerCategorias } from "../service/categoriaService";
+import { ListGroup, Button } from "react-bootstrap";
 import {
   obtenerProductosPorPagina,
   obtenerProductos,
@@ -9,28 +10,22 @@ function ProductosConFiltroView() {
   const [categorias, setCategorias] = useState([]);
 
   const [todosLosProductos, setTodosLosProductos] = useState([]);
-
-  const [productos, setProductos] = useState([]);
+  const [productos, setProductos] = useState([]); // este productos hace el recorrido
 
   const [limite, setLimite] = useState(8);
   const [pagina, setPagina] = useState(1);
-
   const [totalpaginas, guardarTotalPaginas] = useState(1);
 
-  const getCategorias = async () => {
-    try {
-      const catObtenidas = await obtenerCategorias();
-      setCategorias(catObtenidas);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getProductos = async () => {
+  const getData = async () => {
     try {
       const totalProductos = await obtenerProductos();
-      const prodObtenidos = await obtenerProductosPorPagina(pagina, limite);
-      setProductos(prodObtenidos);
+      const prodObtenidosPorPagina = await obtenerProductosPorPagina(
+        pagina,
+        limite
+      );
+      const catObtenidas = await obtenerCategorias();
+      setCategorias(catObtenidas);
+      setProductos(prodObtenidosPorPagina);
       setTodosLosProductos(totalProductos);
       const totalProduct = totalProductos.length;
       const prodDelLimite = 8;
@@ -47,20 +42,54 @@ function ProductosConFiltroView() {
     }
   };
 
-  useEffect(() => {
-    getProductos();
-    getCategorias();
-  }, [pagina]);
+  //filtrar por categoria
+  const filtarPorCategoria = (idCategoria) => {
+    console.log("entra a filtarPorCategoria");
+    console.log("id de categoria es", idCategoria);
+    console.log("aqui todos los productos", todosLosProductos);
+    const productosFiltrados = todosLosProductos.filter(
+      (producto) => producto.categoria_id === idCategoria
+    );
+    console.log("estos son los productos filtrados", productosFiltrados);
+    setProductos(productosFiltrados);
+    //setTodosLosProductos(productosFiltrados);
+  };
 
+  useEffect(() => {
+    getData();
+  }, [pagina]);
   return (
     <div
       className="container-fluid jumbotron"
       style={{ background: "#e8e8e8" }}
     >
       <div className="container">
-        <div className="row">
+        <div className="row pt-4">
           <div className="col-12 col-md-4 col-lg-4">
             <h3>Categorias</h3>
+            <ListGroup as="ul">
+              <Button
+                variant="info my-1 text-uppercase fw-bolder"
+                className="py-2"
+                as="li"
+                onClick={() => setProductos(todosLosProductos)}
+              >
+                TODAS LAS CATEGORIAS
+              </Button>
+              {categorias.map((cat, i) => (
+                <Button
+                  variant="info my-1 text-uppercase fw-bolder"
+                  className="py-2"
+                  as="li"
+                  key={i}
+                  onClick={() => {
+                    filtarPorCategoria(cat.id);
+                  }}
+                >
+                  {cat.nombre}
+                </Button>
+              ))}
+            </ListGroup>
           </div>
           <div className="col-12 col-md-8 col-lg-8">
             <h3 className="text-center">Productos</h3>

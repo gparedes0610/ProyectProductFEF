@@ -8,23 +8,70 @@ import LoginView from "./views/LoginView";
 import HomeView from "./views/HomeView";
 import CrearCuentaView from "./views/CrearCuentaView";
 import ProductosConFiltroView from "./views/ProductosConFiltroView";
+import ProductoDetalleView from "./views/ProductoDetalleView";
+import ChekOutView from "./views/ChekOutView";
+import PrivateRoute from "./components/PrivateRoute";
+import BusquedaView from "./views/BusquedaView";
+
 import { AuthContextProvider } from "./context/authContext";
+import { CarritoContextProvider } from "./context/carritoContext";
 
 function App() {
   return (
     <AuthContextProvider>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<HomeView />} />
-          <Route path="/login" element={<LoginView />} />
-          <Route path="/crearcuenta" element={<CrearCuentaView />} />
-          <Route
-            path="/productosfiltros"
-            element={<ProductosConFiltroView />}
-          />
-        </Routes>
-      </Router>
+      <CarritoContextProvider>
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<HomeView />} />
+            <Route path="/login" element={<LoginView />} />
+            <Route path="/crearcuenta" element={<CrearCuentaView />} />
+            <Route
+              path="/chekout"
+              element={
+                <PrivateRoute>
+                  <ChekOutView />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/detalleproducto/:id"
+              element={<ProductoDetalleView />}
+            />
+            <Route
+              path="/productobusqueda?search=:busqueda"
+              element={<BusquedaView />}
+            />
+
+            <Route path="/productosfiltros">
+              <Route
+                path="/productosfiltros"
+                element={<ProductosConFiltroView />}
+              />
+              {/* <Route
+                path="/productosfiltros/?search=:busqueda"
+                element={<ProductosConFiltroView />}
+              /> */}
+
+              {/*  <Route
+                path="/productosfiltros?search=:busqueda"
+                element={<ProductosConFiltroView />}
+              /> */}
+            </Route>
+
+            {/* <Route path="/productosfiltros">
+              <Route
+                path="/productosfiltros"
+                element={<ProductosConFiltroView />}
+              />
+              <Route
+                path="/productosfiltros/:busqueda"
+                element={<ProductosConFiltroView />}
+              />
+            </Route> */}
+          </Routes>
+        </Router>
+      </CarritoContextProvider>
     </AuthContextProvider>
   );
 }

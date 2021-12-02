@@ -1,3 +1,8 @@
+* {
+  font-family: "Open Sans", sans-serif;
+  list-style: none;
+}
+
 .boton {
   border: none;
   background-color: transparent;
