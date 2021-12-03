@@ -14,7 +14,7 @@ const obtenerProductos = async () => {
 //obtener productos por busqueda
 const obtenerProductosPorBusqueda = async (busqueda = "") => {
   try {
-    let { data } = await axios.get(`${URL}?search=${busqueda}`);
+    let { data } = await axios.get(`${URL}/?search=${busqueda}`);
     return data;
   } catch (error) {
     console.log(error);

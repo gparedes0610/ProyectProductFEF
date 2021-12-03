@@ -49,7 +49,8 @@ function Navbar() {
 
   const manejarBusqueda = () => {
     console.log("entraste a manejar busqueda");
-    navigate(`/productobusqueda?search=${refBuscar.current.value}`);
+    navigate(`/productosfiltros/${refBuscar.current.value}`);
+    //navigate(`/productosfiltros/?search=${refBuscar.current.value}`);
   };
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);

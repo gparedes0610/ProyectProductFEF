@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import { obtenerCategorias } from "../service/categoriaService";
 import { ListGroup, Button } from "react-bootstrap";
+import { useNavigate, useParams } from "react-router";
 import {
   obtenerProductosPorPagina,
   obtenerProductos,
+  obtenerProductosPorBusqueda,
 } from "../service/productoService";
 function ProductosConFiltroView() {
   const [categorias, setCategorias] = useState([]);
@@ -15,6 +17,12 @@ function ProductosConFiltroView() {
   const [limite, setLimite] = useState(8);
   const [pagina, setPagina] = useState(1);
   const [totalpaginas, guardarTotalPaginas] = useState(1);
+  ///////
+  console.log("hola entraste a productos con filtros");
+  const { busqueda } = useParams();
+  console.log("busqueda", busqueda);
+  const [productosBuscados, setProductosBuscados] = useState([]);
+  console.log("productos buscados", productosBuscados);
 
   const getData = async () => {
     try {
@@ -24,9 +32,14 @@ function ProductosConFiltroView() {
         limite
       );
       const catObtenidas = await obtenerCategorias();
+
+      const productoPorBusqueda = await obtenerProductosPorBusqueda(busqueda);
+
+      setProductosBuscados(productoPorBusqueda);
       setCategorias(catObtenidas);
       setProductos(prodObtenidosPorPagina);
       setTodosLosProductos(totalProductos);
+
       const totalProduct = totalProductos.length;
       const prodDelLimite = 8;
       //console.log("todos los productos", totalProduct);
@@ -35,8 +48,8 @@ function ProductosConFiltroView() {
       //console.log("total paginas calculadas", totalPaginasCaculadas);
       guardarTotalPaginas(totalPaginasCaculadas);
 
-      const jumbotron = document.querySelector(".jumbotron");
-      jumbotron.scrollIntoView({ behavior: "smooth" });
+      /*  const jumbotron = document.querySelector(".jumbotron");
+      jumbotron.scrollIntoView({ behavior: "smooth" }); */
     } catch (error) {
       console.log(error);
     }
@@ -44,9 +57,9 @@ function ProductosConFiltroView() {
 
   //filtrar por categoria
   const filtarPorCategoria = (idCategoria) => {
-    console.log("entra a filtarPorCategoria");
+    /* console.log("entra a filtarPorCategoria");
     console.log("id de categoria es", idCategoria);
-    console.log("aqui todos los productos", todosLosProductos);
+    console.log("aqui todos los productos", todosLosProductos); */
     const productosFiltrados = todosLosProductos.filter(
       (producto) => producto.categoria_id === idCategoria
     );
@@ -59,10 +72,8 @@ function ProductosConFiltroView() {
     getData();
   }, [pagina]);
   return (
-    <div
-      className="container-fluid jumbotron"
-      style={{ background: "#e8e8e8" }}
-    >
+    <div className="container-fluid " style={{ background: "#e8e8e8" }}>
+      {/* jumbotron */}
       <div className="container">
         <div className="row pt-4">
           <div className="col-12 col-md-4 col-lg-4">

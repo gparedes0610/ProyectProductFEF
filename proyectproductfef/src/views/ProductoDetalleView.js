@@ -1,9 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import {
-  obtenerProductoPorId,
-  obtenerProductosPorBusqueda,
-} from "../service/productoService";
+import { obtenerProductoPorId } from "../service/productoService";
 import { Button, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
@@ -16,14 +13,12 @@ function ProductoDetalleView() {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const { id, busqueda } = useParams();
-  console.log("soy id", id);
-  console.log("soy busqueda", busqueda);
+  const { id } = useParams();
+
+  /* console.log("soy id", id);*/
 
   const [producto, setProducto] = useState({});
   const [caracteristicas, setCaracteristicas] = useState([]);
-
-  const [productosBuscados, setProductosBuscados] = useState([]);
 
   const [cantidad, setCantidad] = useState(1);
   //const navigate = useNavigate();
@@ -36,8 +31,7 @@ function ProductoDetalleView() {
       // console.log("caracteristica", productoPorId.caracteristicas);
       const { caracteristicas } = productoPorId;
       //console.log("caracteristicas", caracteristicas);
-      const productoPorBusqueda = await obtenerProductosPorBusqueda(busqueda);
-      setProductosBuscados(productoPorBusqueda);
+
       setCaracteristicas(caracteristicas);
       setProducto(productoPorId);
     } catch (error) {

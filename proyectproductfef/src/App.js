@@ -38,37 +38,26 @@ function App() {
               path="/detalleproducto/:id"
               element={<ProductoDetalleView />}
             />
-            <Route
+            {/*   <Route
               path="/productobusqueda?search=:busqueda"
               element={<BusquedaView />}
-            />
+            /> */}
 
             <Route path="/productosfiltros">
               <Route
                 path="/productosfiltros"
                 element={<ProductosConFiltroView />}
               />
+
               {/* <Route
                 path="/productosfiltros/?search=:busqueda"
                 element={<ProductosConFiltroView />}
               /> */}
-
-              {/*  <Route
-                path="/productosfiltros?search=:busqueda"
-                element={<ProductosConFiltroView />}
-              /> */}
-            </Route>
-
-            {/* <Route path="/productosfiltros">
-              <Route
-                path="/productosfiltros"
-                element={<ProductosConFiltroView />}
-              />
               <Route
                 path="/productosfiltros/:busqueda"
                 element={<ProductosConFiltroView />}
               />
-            </Route> */}
+            </Route>
           </Routes>
         </Router>
       </CarritoContextProvider>
