@@ -11,7 +11,6 @@ import ProductosConFiltroView from "./views/ProductosConFiltroView";
 import ProductoDetalleView from "./views/ProductoDetalleView";
 import ChekOutView from "./views/ChekOutView";
 import PrivateRoute from "./components/PrivateRoute";
-import BusquedaView from "./views/BusquedaView";
 
 import { AuthContextProvider } from "./context/authContext";
 import { CarritoContextProvider } from "./context/carritoContext";
@@ -38,10 +37,6 @@ function App() {
               path="/detalleproducto/:id"
               element={<ProductoDetalleView />}
             />
-            {/*   <Route
-              path="/productobusqueda?search=:busqueda"
-              element={<BusquedaView />}
-            /> */}
 
             <Route path="/productosfiltros">
               <Route

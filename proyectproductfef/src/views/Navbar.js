@@ -11,7 +11,9 @@ import { CarritoContext } from "../context/carritoContext";
 import Swal from "sweetalert2";
 
 function Navbar() {
-  const { user, signOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const { user, signOut, limpiarCarrito } = useContext(AuthContext);
   const { carrito } = useContext(CarritoContext);
   //console.log(carrito);
 
@@ -27,7 +29,20 @@ function Navbar() {
     return acum + prod.cantidad * prod.precio;
   }, 0);
 
-  const navigate = useNavigate();
+  const manejarLimpiarCarrito = () => {
+    console.log("limpia carrito");
+    /*  const accionUsuario = await Swal.fire({
+      icon: "warning",
+      title: "Desea borrar su carrito?",
+      showConfirmButton: true,
+      showCancelButton: true,
+    });
+
+    if (accionUsuario.isConfirmed) {
+      limpiarCarrito();
+    } */
+    limpiarCarrito();
+  };
 
   const validarUsuario = () => {
     if (user) {
@@ -121,7 +136,7 @@ function Navbar() {
                   <NavDropdown.Item>Ver tus Compras</NavDropdown.Item>
                 </NavDropdown>
               ) : (
-                <Link className="text-success" to="/login">
+                <Link className="text-secondary mx-3" to="/login">
                   Inicia Sesion / Registrate
                 </Link>
               )}
@@ -169,19 +184,19 @@ function Navbar() {
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Carrito de Compras</Offcanvas.Title>
         </Offcanvas.Header>
-        <Offcanvas.Body>
+        <div className="container">
           <table className="table">
-            <thead>
-              <th>Producto</th>
-              <th>Nombre</th>
-              <th>Cantidad</th>
-              <th>Precio</th>
-              <th>P.Total</th>
-            </thead>
+            {/* <thead>
+              <td>Producto</td>
+              <td>Nombre</td>
+              <td>Cantidad</td>
+              <td>Precio</td>
+              <td>P.Total</td>
+            </thead> */}
             <tbody>
               {carrito.map((prod, i) => (
                 <tr key={i}>
-                  <td>
+                  <td key={i}>
                     <img src={prod.imagen} alt={prod.nombre} className="w-75" />
                   </td>
                   <td>{prod.nombre}</td>
@@ -192,13 +207,18 @@ function Navbar() {
               ))}
             </tbody>
           </table>
+          <div className="d-flex justify-content-end">
+            <button className="btn btn-danger" onClick={manejarLimpiarCarrito}>
+              Limpiar Carrito
+            </button>
+          </div>
           <p className="h3 text-uppercase">
             Subtotal: <span>S/.{total}</span>
           </p>
           <button className="btn btn-primary w-100" onClick={validarUsuario}>
             Iniciar Compra
           </button>
-        </Offcanvas.Body>
+        </div>
       </Offcanvas>
     </nav>
   );

@@ -22,6 +22,9 @@ export const CarritoContextProvider = (props) => {
       setCarrito(carritoTemp);
     }
   };
+  const limpiarCarrito = () => {
+    setCarrito([]);
+  };
 
   useEffect(() => {
     const carritoStorage = JSON.parse(localStorage.getItem("appCarrito"));
@@ -35,7 +38,9 @@ export const CarritoContextProvider = (props) => {
   }, [carrito]);
 
   return (
-    <CarritoContext.Provider value={{ anadirACarrito, carrito }}>
+    <CarritoContext.Provider
+      value={{ anadirACarrito, carrito, limpiarCarrito }}
+    >
       {props.children}
     </CarritoContext.Provider>
   );

@@ -18,11 +18,11 @@ function ProductosConFiltroView() {
   const [pagina, setPagina] = useState(1);
   const [totalpaginas, guardarTotalPaginas] = useState(1);
   ///////
-  console.log("hola entraste a productos con filtros");
+  //console.log("hola entraste a productos con filtros");
   const { busqueda } = useParams();
-  console.log("busqueda", busqueda);
+  //console.log("busqueda", busqueda);
   const [productosBuscados, setProductosBuscados] = useState([]);
-  console.log("productos buscados", productosBuscados);
+  //console.log("productos buscados", productosBuscados);
 
   const getData = async () => {
     try {
