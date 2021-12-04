@@ -15,7 +15,7 @@ function Navbar() {
 
   const { user, signOut } = useContext(AuthContext);
   const { carrito, limpiarCarrito } = useContext(CarritoContext);
-  console.log(carrito);
+  //console.log(carrito);
 
   const totalCarrito = carrito.reduce((total, prod) => {
     return total + prod.cantidad;
@@ -103,11 +103,7 @@ function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link
-                className="nav-link active"
-                aria-current="page"
-                to="/conocenos"
-              >
+              <Link className="nav-link " aria-current="page" to="/conocenos">
                 Conocenos
               </Link>
             </li>

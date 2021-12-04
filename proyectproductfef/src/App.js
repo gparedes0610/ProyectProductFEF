@@ -12,6 +12,8 @@ import ProductoDetalleView from "./views/ProductoDetalleView";
 import ChekOutView from "./views/ChekOutView";
 import PrivateRoute from "./components/PrivateRoute";
 import FooterView from "./views/FooterView";
+import ConocenosView from "./views/ConocenosView";
+
 import { AuthContextProvider } from "./context/authContext";
 import { CarritoContextProvider } from "./context/carritoContext";
 
@@ -25,6 +27,7 @@ function App() {
             <Route path="/" element={<HomeView />} />
             <Route path="/login" element={<LoginView />} />
             <Route path="/crearcuenta" element={<CrearCuentaView />} />
+            <Route path="/conocenos" element={<ConocenosView />} />
             <Route
               path="/chekout"
               element={

@@ -4,6 +4,7 @@ import img2 from "../img/img2.jpg";
 import img3 from "../img/img3.jpg";
 //import img4 from "../img/img4.jpg";
 import img5 from "../img/img5.jpg";
+import img6 from "../img/img6.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 function Carusel() {
@@ -34,6 +35,12 @@ function Carusel() {
           data-bs-slide-to="2"
           aria-label="Slide 3"
         ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide-to="3"
+          aria-label="Slide 4"
+        ></button>
       </div>
       <div className="carousel-inner">
         <div className="carousel-item active">
@@ -60,6 +67,16 @@ function Carusel() {
         </div>
         <div className="carousel-item">
           <img src={img3} className="d-block w-100" alt="..." />
+          <div className="carousel-caption d-none d-md-block">
+            <h5 className="text-uppercase my-2">Monitores</h5>
+            <button className="text-uppercase text-light botonfondoTransparante">
+              Ver Mas
+              {/*  <FontAwesomeIcon icon={faArrowRight} className="mx-3" /> */}
+            </button>
+          </div>
+        </div>
+        <div className="carousel-item">
+          <img src={img6} className="d-block w-100" alt="..." />
           <div className="carousel-caption d-none d-md-block">
             <h5 className="text-uppercase my-2">Monitores</h5>
             <button className="text-uppercase text-light botonfondoTransparante">

@@ -19,3 +19,7 @@
   border: 1px solid white;
   padding: 8px 10px;
 }
+
+.cambiarcolores li:nth-child(odd) {
+  background-color: #51c9ff;
+}

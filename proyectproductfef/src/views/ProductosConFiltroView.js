@@ -48,8 +48,8 @@ function ProductosConFiltroView() {
       //console.log("total paginas calculadas", totalPaginasCaculadas);
       guardarTotalPaginas(totalPaginasCaculadas);
 
-      /*  const jumbotron = document.querySelector(".jumbotron");
-      jumbotron.scrollIntoView({ behavior: "smooth" }); */
+      const jumbotron = document.querySelector(".jumbotron");
+      jumbotron.scrollIntoView({ behavior: "smooth" });
     } catch (error) {
       console.log(error);
     }
@@ -74,8 +74,9 @@ function ProductosConFiltroView() {
   return (
     <div className="container-fluid " style={{ background: "#e8e8e8" }}>
       {/* jumbotron */}
-      <div className="container">
-        <div className="row pt-4">
+
+      <div className="container jumbotron ">
+        <div className="row pt-5">
           <div className="col-12 col-md-4 col-lg-4">
             <h3>Categorias</h3>
             <ListGroup as="ul">
@@ -107,30 +108,28 @@ function ProductosConFiltroView() {
             {productos.map((producto, i) => (
               <ProductCard producto={producto} key={i} />
             ))}
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-12 d-flex justify-content-end">
-            {pagina === 1 ? null : (
-              <button
-                className="btn btn-primary mx-2"
-                onClick={() => {
-                  setPagina(pagina - 1);
-                }}
-              >
-                Atras
-              </button>
-            )}
-            {pagina === totalpaginas ? null : (
-              <button
-                className="btn btn-primary"
-                onClick={() => {
-                  setPagina(pagina + 1);
-                }}
-              >
-                Siguiente
-              </button>
-            )}
+            <div className="col-12 d-flex justify-content-end mb-3">
+              {pagina === 1 ? null : (
+                <button
+                  className="btn btn-primary mx-2"
+                  onClick={() => {
+                    setPagina(pagina - 1);
+                  }}
+                >
+                  Atras
+                </button>
+              )}
+              {pagina === totalpaginas ? null : (
+                <button
+                  className="btn btn-primary"
+                  onClick={() => {
+                    setPagina(pagina + 1);
+                  }}
+                >
+                  Siguiente
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
