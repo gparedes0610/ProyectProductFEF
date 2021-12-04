@@ -20,7 +20,10 @@ function CategoriasView() {
   }, []);
 
   return (
-    <div className="container-fluid pt-5" style={{ background: "#0B0D17" }}>
+    <div
+      className="container-fluid pt-5 pb-5"
+      style={{ background: "#0B0D17" }}
+    >
       <div className="container">
         <div className="row">
           {categorias.map((categoria, i) => (

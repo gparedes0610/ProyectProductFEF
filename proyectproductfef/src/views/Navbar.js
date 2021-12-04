@@ -13,9 +13,9 @@ import Swal from "sweetalert2";
 function Navbar() {
   const navigate = useNavigate();
 
-  const { user, signOut, limpiarCarrito } = useContext(AuthContext);
-  const { carrito } = useContext(CarritoContext);
-  //console.log(carrito);
+  const { user, signOut } = useContext(AuthContext);
+  const { carrito, limpiarCarrito } = useContext(CarritoContext);
+  console.log(carrito);
 
   const totalCarrito = carrito.reduce((total, prod) => {
     return total + prod.cantidad;
@@ -29,9 +29,8 @@ function Navbar() {
     return acum + prod.cantidad * prod.precio;
   }, 0);
 
-  const manejarLimpiarCarrito = () => {
-    console.log("limpia carrito");
-    /*  const accionUsuario = await Swal.fire({
+  const manejarLimpiarCarrito = async () => {
+    const accionUsuario = await Swal.fire({
       icon: "warning",
       title: "Desea borrar su carrito?",
       showConfirmButton: true,
@@ -40,9 +39,12 @@ function Navbar() {
 
     if (accionUsuario.isConfirmed) {
       limpiarCarrito();
-    } */
-    limpiarCarrito();
+    }
   };
+  /* const manejarLimpiarCarrito = () => {
+    console.log("limpia carrito");
+    limpiarCarrito();
+  }; */
 
   const validarUsuario = () => {
     if (user) {
@@ -186,13 +188,13 @@ function Navbar() {
         </Offcanvas.Header>
         <div className="container">
           <table className="table">
-            {/* <thead>
+            <thead>
               <td>Producto</td>
               <td>Nombre</td>
               <td>Cantidad</td>
               <td>Precio</td>
               <td>P.Total</td>
-            </thead> */}
+            </thead>
             <tbody>
               {carrito.map((prod, i) => (
                 <tr key={i}>
@@ -208,13 +210,19 @@ function Navbar() {
             </tbody>
           </table>
           <div className="d-flex justify-content-end">
-            <button className="btn btn-danger" onClick={manejarLimpiarCarrito}>
-              Limpiar Carrito
-            </button>
+            {carrito.length <= 0 ? null : (
+              <button
+                className="btn btn-danger"
+                onClick={manejarLimpiarCarrito}
+              >
+                Limpiar Carrito
+              </button>
+            )}
           </div>
           <p className="h3 text-uppercase">
             Subtotal: <span>S/.{total}</span>
           </p>
+
           <button className="btn btn-primary w-100" onClick={validarUsuario}>
             Iniciar Compra
           </button>

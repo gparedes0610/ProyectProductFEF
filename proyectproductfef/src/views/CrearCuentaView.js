@@ -15,7 +15,7 @@ function CrearCuentaView() {
   return (
     <>
       <p className="h2 text-uppercase text-center fw-bold my-3">CREAR CUENTA</p>
-      <div className="container-fluid">
+      <div className="container-fluid" style={{ marginBottom: "180px" }}>
         <div className="row">
           <div
             className="col-12 col-md-6 col-lg-6"

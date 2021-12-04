@@ -11,7 +11,7 @@ import ProductosConFiltroView from "./views/ProductosConFiltroView";
 import ProductoDetalleView from "./views/ProductoDetalleView";
 import ChekOutView from "./views/ChekOutView";
 import PrivateRoute from "./components/PrivateRoute";
-
+import FooterView from "./views/FooterView";
 import { AuthContextProvider } from "./context/authContext";
 import { CarritoContextProvider } from "./context/carritoContext";
 
@@ -54,6 +54,7 @@ function App() {
               />
             </Route>
           </Routes>
+          <FooterView />
         </Router>
       </CarritoContextProvider>
     </AuthContextProvider>
