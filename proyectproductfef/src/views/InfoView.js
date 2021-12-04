@@ -16,7 +16,7 @@ export default function InfoView() {
             style={{ zIndex: 100 }}
           >
             <h2
-              className="fw-bold "
+              className="fw-bold text-uppercase"
               style={{ fontSize: "36px", color: "#51c9ff" }}
             >
               Tenemos todo lo que buscas

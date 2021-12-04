@@ -102,6 +102,15 @@ function Navbar() {
                 Productos
               </Link>
             </li>
+            <li className="nav-item">
+              <Link
+                className="nav-link active"
+                aria-current="page"
+                to="/conocenos"
+              >
+                Conocenos
+              </Link>
+            </li>
             {user ? (
               <>
                 <li className="nav-item">
@@ -138,7 +147,11 @@ function Navbar() {
                   <NavDropdown.Item>Ver tus Compras</NavDropdown.Item>
                 </NavDropdown>
               ) : (
-                <Link className="text-secondary mx-3" to="/login">
+                <Link
+                  className="text-secondary mx-3"
+                  to="/login"
+                  style={{ textDecoration: "none" }}
+                >
                   Inicia Sesion / Registrate
                 </Link>
               )}
